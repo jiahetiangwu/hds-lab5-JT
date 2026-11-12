@@ -1,0 +1,98 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-11-11 22:20:58
+  Workflow ID: b061464b-5c99-43eb-bfd1-e717fd336624
+  Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+  Host: JIAHEs-MacBook-Pro-7.local
+  User: jiahetian
+  Snakemake version: 9.27.1
+  Python version: 3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 11:23:37) [Clang 14.0.6 ]
+  Command: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/snakemake --cores 2 --printshellcmds
+  Snakefile: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/Snakefile
+  Base directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Run directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Working directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Config file(s): []
+  Config MD5: 99914b932bd37a50b983c5e7c90ae93b
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+clean_samples         1
+create_summary        1
+render_report         1
+all                   1
+total                 4
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Nov 11 22:20:59 2026]
+localrule clean_samples:
+    input: data/raw/messy_samples.csv, scripts/clean_samples.py
+    output: data/processed/cleaned_samples.csv
+    log: logs/clean_samples.log
+    jobid: 1
+    reason: Updated input files: data/raw/messy_samples.csv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: 
+        '/Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/python' scripts/clean_samples.py             --input data/raw/messy_samples.csv             --output data/processed/cleaned_samples.csv             > logs/clean_samples.log 2>&1
+        
+[Wed Nov 11 22:20:59 2026]
+Finished jobid: 1 (Rule: clean_samples)
+1 of 4 steps (25%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Nov 11 22:20:59 2026]
+localrule create_summary:
+    input: data/processed/cleaned_samples.csv, data/processed/feature_table.tsv, scripts/create_summary.py
+    output: results/summary_metrics.tsv, results/summary_figure.png
+    log: logs/create_summary.log
+    jobid: 3
+    reason: Input files updated by another job: data/processed/cleaned_samples.csv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: 
+        '/Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/python' scripts/create_summary.py             --samples data/processed/cleaned_samples.csv             --features data/processed/feature_table.tsv             --metrics results/summary_metrics.tsv             --figure results/summary_figure.png             > logs/create_summary.log 2>&1
+        
+[Wed Nov 11 22:21:00 2026]
+Finished jobid: 3 (Rule: create_summary)
+2 of 4 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Nov 11 22:21:00 2026]
+localrule render_report:
+    input: results/summary_metrics.tsv, results/summary_figure.png, scripts/render_report.py
+    output: results/report.md
+    log: logs/render_report.log
+    jobid: 4
+    reason: Input files updated by another job: results/summary_figure.png, results/summary_metrics.tsv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: 
+        '/Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/python' scripts/render_report.py             --metrics results/summary_metrics.tsv             --figure results/summary_figure.png             --output results/report.md             > logs/render_report.log 2>&1
+        
+[Wed Nov 11 22:21:00 2026]
+Finished jobid: 4 (Rule: render_report)
+3 of 4 steps (75%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Nov 11 22:21:00 2026]
+localrule all:
+    input: data/processed/cleaned_samples.csv, data/processed/feature_table.tsv, data/processed/site_stage_counts.tsv, results/summary_metrics.tsv, results/summary_figure.png, results/report.md
+    jobid: 0
+    reason: Input files updated by another job: data/processed/cleaned_samples.csv, results/summary_figure.png, results/report.md, results/summary_metrics.tsv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: None
+[Wed Nov 11 22:21:00 2026]
+Finished jobid: 0 (Rule: all)
+4 of 4 steps (100%) done
+Complete log(s): /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.snakemake/log/2026-11-11T222058.742084.snakemake.log
+Elapsed time: 0:00:02.195702

@@ -1,0 +1,114 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-11-11 22:17:37
+  Workflow ID: 4a292420-72f3-4686-babe-fa4458e7690d
+  Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+  Host: JIAHEs-MacBook-Pro-7.local
+  User: jiahetian
+  Snakemake version: 9.27.1
+  Python version: 3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 11:23:37) [Clang 14.0.6 ]
+  Command: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/snakemake --cores 2 --printshellcmds
+  Snakefile: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/Snakefile
+  Base directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Run directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Working directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Config file(s): []
+  Config MD5: 99914b932bd37a50b983c5e7c90ae93b
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job stats:
+job                       count
+----------------------  -------
+clean_samples                 1
+query_patient_features        1
+create_summary                1
+render_report                 1
+all                           1
+total                         5
+
+Select jobs to execute...
+Execute 2 jobs...
+
+[Wed Nov 11 22:17:38 2026]
+localrule query_patient_features:
+    input: data/raw/cohort.db, scripts/build_feature_table.py, scripts/query1_gene_counts.sql, scripts/query2_site_stage_counts.sql
+    output: data/processed/feature_table.tsv, data/processed/site_stage_counts.tsv
+    log: logs/query_patient_features.log
+    jobid: 2
+    reason: Missing output files: data/processed/feature_table.tsv, data/processed/site_stage_counts.tsv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: 
+        '/Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/python' scripts/build_feature_table.py             --db data/raw/cohort.db             --output-dir data/processed             > logs/query_patient_features.log 2>&1
+        
+
+[Wed Nov 11 22:17:38 2026]
+localrule clean_samples:
+    input: data/raw/messy_samples.csv, scripts/clean_samples.py
+    output: data/processed/cleaned_samples.csv
+    log: logs/clean_samples.log
+    jobid: 1
+    reason: Missing output files: data/processed/cleaned_samples.csv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: 
+        '/Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/python' scripts/clean_samples.py             --input data/raw/messy_samples.csv             --output data/processed/cleaned_samples.csv             > logs/clean_samples.log 2>&1
+        
+[Wed Nov 11 22:17:38 2026]
+Finished jobid: 2 (Rule: query_patient_features)
+1 of 5 steps (20%) done
+[Wed Nov 11 22:17:38 2026]
+Finished jobid: 1 (Rule: clean_samples)
+2 of 5 steps (40%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Nov 11 22:17:38 2026]
+localrule create_summary:
+    input: data/processed/cleaned_samples.csv, data/processed/feature_table.tsv, scripts/create_summary.py
+    output: results/summary_metrics.tsv, results/summary_figure.png
+    log: logs/create_summary.log
+    jobid: 3
+    reason: Missing output files: results/summary_metrics.tsv, results/summary_figure.png; Input files updated by another job: data/processed/cleaned_samples.csv, data/processed/feature_table.tsv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: 
+        '/Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/python' scripts/create_summary.py             --samples data/processed/cleaned_samples.csv             --features data/processed/feature_table.tsv             --metrics results/summary_metrics.tsv             --figure results/summary_figure.png             > logs/create_summary.log 2>&1
+        
+[Wed Nov 11 22:17:39 2026]
+Finished jobid: 3 (Rule: create_summary)
+3 of 5 steps (60%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Nov 11 22:17:39 2026]
+localrule render_report:
+    input: results/summary_metrics.tsv, results/summary_figure.png, scripts/render_report.py
+    output: results/report.md
+    log: logs/render_report.log
+    jobid: 4
+    reason: Missing output files: results/report.md; Input files updated by another job: results/summary_metrics.tsv, results/summary_figure.png
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: 
+        '/Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/python' scripts/render_report.py             --metrics results/summary_metrics.tsv             --figure results/summary_figure.png             --output results/report.md             > logs/render_report.log 2>&1
+        
+[Wed Nov 11 22:17:40 2026]
+Finished jobid: 4 (Rule: render_report)
+4 of 5 steps (80%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Nov 11 22:17:40 2026]
+localrule all:
+    input: data/processed/cleaned_samples.csv, data/processed/feature_table.tsv, data/processed/site_stage_counts.tsv, results/summary_metrics.tsv, results/summary_figure.png, results/report.md
+    jobid: 0
+    reason: Input files updated by another job: results/report.md, data/processed/feature_table.tsv, results/summary_metrics.tsv, data/processed/site_stage_counts.tsv, data/processed/cleaned_samples.csv, results/summary_figure.png
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Shell command: None
+[Wed Nov 11 22:17:40 2026]
+Finished jobid: 0 (Rule: all)
+5 of 5 steps (100%) done
+Complete log(s): /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.snakemake/log/2026-11-11T221737.576900.snakemake.log
+Elapsed time: 0:00:02.592945

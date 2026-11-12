@@ -1,0 +1,21 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-11-11 22:18:02
+  Workflow ID: f08427d9-ec67-4714-8b4a-f5a848a9cb5f
+  Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+  Host: JIAHEs-MacBook-Pro-7.local
+  User: jiahetian
+  Snakemake version: 9.27.1
+  Python version: 3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 11:23:37) [Clang 14.0.6 ]
+  Command: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/snakemake --cores 2 --dry-run
+  Snakefile: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/Snakefile
+  Base directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Run directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Working directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Config file(s): []
+  Config MD5: 99914b932bd37a50b983c5e7c90ae93b
+
+Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).

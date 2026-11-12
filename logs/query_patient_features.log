@@ -1,0 +1,12 @@
+Patients before join: 566
+Patients after sample join: 566
+Query 1 rows: expected 2830, actual 2830
+Query 2 groups: expected 142, actual 142
+Final feature table: 566 rows, 11 columns
+Missing sex: 52
+Missing age_at_diagnosis: 71
+Missing stage: 54
+Missing tissue_source_site: 0
+Missing tmb_nonsynonymous: 0
+All five gene totals match direct mutation counts.
+Outputs saved in: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/data/processed

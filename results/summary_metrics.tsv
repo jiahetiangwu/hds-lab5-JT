@@ -1,0 +1,15 @@
+dataset	metric	value
+clinical_samples	sample_count	60.0
+clinical_samples	glucose_mean_mg_dl	735.0533333333334
+clinical_samples	glucose_median_mg_dl	170.1
+clinical_samples	glucose_min_mg_dl	77.2
+clinical_samples	glucose_max_mg_dl	4341.6
+patient_features	patient_count	566.0
+patient_features	missing_sex	52.0
+patient_features	missing_age_at_diagnosis	71.0
+patient_features	missing_stage	54.0
+patient_features	TP53_non_silent_mutation_records	305.0
+patient_features	KRAS_non_silent_mutation_records	172.0
+patient_features	EGFR_non_silent_mutation_records	85.0
+patient_features	STK11_non_silent_mutation_records	81.0
+patient_features	KEAP1_non_silent_mutation_records	103.0

@@ -1,0 +1,76 @@
+Assuming unrestricted shared filesystem usage.
+
+SNAKEMAKE
+=========
+  Date: 2026-11-11 22:20:31
+  Workflow ID: 37aedfc7-769b-4639-8cf7-e2a87307dfa3
+  Platform: macOS-26.6.2-arm64-arm-64bit-Mach-O
+  Host: JIAHEs-MacBook-Pro-7.local
+  User: jiahetian
+  Snakemake version: 9.27.1
+  Python version: 3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 11:23:37) [Clang 14.0.6 ]
+  Command: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/.venv/bin/snakemake --cores 2 --dry-run
+  Snakefile: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT/Snakefile
+  Base directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Run directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Working directory: /Users/jiahetian/Desktop/GWU Y3 S1/PUBH 6854 Applied Computing/hds-lab5-JT
+  Config file(s): []
+  Config MD5: 99914b932bd37a50b983c5e7c90ae93b
+
+Building DAG of jobs...
+Job stats:
+job               count
+--------------  -------
+clean_samples         1
+create_summary        1
+render_report         1
+all                   1
+total                 4
+
+
+[Wed Nov 11 22:20:31 2026]
+rule clean_samples:
+    input: data/raw/messy_samples.csv, scripts/clean_samples.py
+    output: data/processed/cleaned_samples.csv
+    log: logs/clean_samples.log
+    jobid: 1
+    reason: Updated input files: data/raw/messy_samples.csv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+[Wed Nov 11 22:20:31 2026]
+rule create_summary:
+    input: data/processed/cleaned_samples.csv, data/processed/feature_table.tsv, scripts/create_summary.py
+    output: results/summary_metrics.tsv, results/summary_figure.png
+    log: logs/create_summary.log
+    jobid: 3
+    reason: Input files updated by another job: data/processed/cleaned_samples.csv
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+[Wed Nov 11 22:20:31 2026]
+rule render_report:
+    input: results/summary_metrics.tsv, results/summary_figure.png, scripts/render_report.py
+    output: results/report.md
+    log: logs/render_report.log
+    jobid: 4
+    reason: Input files updated by another job: results/summary_metrics.tsv, results/summary_figure.png
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+[Wed Nov 11 22:20:31 2026]
+rule all:
+    input: data/processed/cleaned_samples.csv, data/processed/feature_table.tsv, data/processed/site_stage_counts.tsv, results/summary_metrics.tsv, results/summary_figure.png, results/report.md
+    jobid: 0
+    reason: Input files updated by another job: results/summary_metrics.tsv, data/processed/cleaned_samples.csv, results/summary_figure.png, results/report.md
+    resources: tmpdir=/var/folders/2g/lh1l0g910pn78mysxzynkp200000gn/T
+Job stats:
+job               count
+--------------  -------
+clean_samples         1
+create_summary        1
+render_report         1
+all                   1
+total                 4
+
+Reasons:
+    (check individual jobs above for details)
+    input files updated by another job:
+        all, create_summary, render_report
+    updated input files:
+        clean_samples
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
